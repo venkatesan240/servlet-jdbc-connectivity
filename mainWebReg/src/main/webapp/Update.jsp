@@ -63,7 +63,7 @@
                 <input type="number" id="mobile" name="mobile"required>
             </div>
             <div class="form-group">
-                <input type="hidden" name="editid" value="<%= request.getParameter("userid") %>">
+                <input type="hidden" name="editid" value="<%= request.getParameter("editid") %>">
                 <input type="submit" value="Update">
             </div>
         </form>

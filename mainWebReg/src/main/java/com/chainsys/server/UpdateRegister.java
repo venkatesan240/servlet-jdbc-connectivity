@@ -38,7 +38,8 @@ public class UpdateRegister extends HttpServlet {
 		String name=request.getParameter("name");
 		String email = request.getParameter("email");
 		int mobile = Integer.parseInt(request.getParameter("mobile"));
-		int id = Integer.parseInt(request.getParameter("userid"));
+		System.out.println(request.getParameter("editid"));
+		int id = Integer.parseInt(request.getParameter("editid"));
 		Register register=new Register();
 		register.setName(name);
 		register.setEmail(email);
