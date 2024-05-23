@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.DbConnection.Crud;
 
 /**
- * Servlet implementation class Registration
+ * Servlet implementation class UpdateRegister
  */
-@WebServlet("/Registration")
-public class Registration extends HttpServlet {
+@WebServlet("/UpdateRegister")
+public class UpdateRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Registration() {
+    public UpdateRegister() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,32 +34,28 @@ public class Registration extends HttpServlet {
     Crud crud=new Crud();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*
-		 * response.getWriter().append("Served at: ").append(request.getContextPath());
-		 * response.getWriter().append("Served at: ").append(request.getContextPath());
-		 */
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String name=request.getParameter("name");
-		regi.setName(name);
 		String email = request.getParameter("email");
-		regi.setEmail(email);
 		int mobile = Integer.parseInt(request.getParameter("mobile"));
-		regi.setMobile(mobile);
-		try {
-			crud.insertRegister(regi);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.setAttribute("list", regi);
+		int id = Integer.parseInt(request.getParameter("userid"));
+		Register register=new Register();
+		register.setName(name);
+		register.setEmail(email);
+		register.setMobile(mobile);
+		register.setId(id);
+		System.out.println(name);
+		System.out.println(email);
+		System.out.println(mobile);
 		ArrayList<Register> list = null;
 		try {
+			crud.updateUser(register);
 			list = crud.getAllUsers();
 		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("list",list);
@@ -71,28 +67,7 @@ public class Registration extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String action = request.getParameter("action");
-		if(action != null && action.equals("Delete")) {
-					int id = Integer.parseInt(request.getParameter("deleteid"));
-			try {
-				crud.deleteUser(id);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			ArrayList<Register> list = null;
-			try {
-				list= crud.getAllUsers();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			request.setAttribute("list",list);
-	        request.getRequestDispatcher("Delete.jsp").forward(request, response);
-			
-		}
+		doGet(request, response);
 	}
 
 }

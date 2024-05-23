@@ -1,10 +1,18 @@
 package com.chainsys.server;
 
 public class Register {
+	int id;
 	String name;
 	String email;
 	int mobile;
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}

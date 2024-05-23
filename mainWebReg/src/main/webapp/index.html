@@ -4,10 +4,62 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<style>
+form {
+    width: 300px;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top:120px;
+}
+h2{
+font-weight:bold;
+text-align:center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px #007bff;
+}
+</style>
 <body>
  <form action="Registration" method="get">
-          <label for="ame">Name:</label>
-          <input type="text" placeholder="name" name="name" required>
+ <h2>Register</h2>
+          <label for="name">Name:</label>
+          <input type="text" placeholder="Name" name="name" required>
           <label for="email">Email:</label>
           <input type="email" placeholder="Email" name="email" required>
           <label for="mobile">Mobile:</label>
