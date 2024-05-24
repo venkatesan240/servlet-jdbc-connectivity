@@ -76,10 +76,56 @@ body {
 .user-details tr:last-child td {
     border-bottom: none;
 }
+
+.search-box {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f9f9f9;
+}
+
+.search-box input[type="text"] {
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    border-radius: 5px 0 0 5px;
+    width: 300px;
+}
+
+.search-box input[type="submit"] {
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s ease;
+}
+
+.search-box input[type="submit"]:hover {
+    background-color: #0056b3;
+}
 </style>
 </head>
 <body>
     <div class="container">
+     <div class="search-box">
+            <form action="SearchServlet" method="get">
+                <input type="text" name="query" placeholder="Search...">
+                <input type="submit" value="Search">
+            </form>
+        </div>
         <h2>User Details</h2>
         <div class="user-details">
             <table>

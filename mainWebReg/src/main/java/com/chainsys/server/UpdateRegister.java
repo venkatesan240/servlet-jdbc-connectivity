@@ -53,10 +53,8 @@ public class UpdateRegister extends HttpServlet {
 			crud.updateUser(register);
 			list = crud.getAllUsers();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("list",list);

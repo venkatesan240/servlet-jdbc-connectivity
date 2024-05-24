@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.chainsys.server.Register;
 
@@ -56,4 +57,33 @@ public class Crud {
 		ps.setInt(4,register.getId());
 		ps.executeUpdate();
 	}
+	
+	 public ArrayList<Register> search(String name) throws ClassNotFoundException {
+	        ArrayList<Register> results = new ArrayList<>();
+	        String sql = "SELECT id, name, mobile, email FROM Info WHERE name LIKE ? OR mobile LIKE ? OR email LIKE ?";
+
+	        try (Connection conn = db.getConnection();
+	             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+	            String searchQuery = "%" + name + "%";
+	            stmt.setString(1, searchQuery);
+	            stmt.setString(2, searchQuery);
+	            stmt.setString(3, searchQuery);
+
+	            try (ResultSet rs = stmt.executeQuery()) {
+	                while (rs.next()) {
+	                    Register info = new Register();
+	                    info.setId(rs.getInt("id"));
+	                    info.setName(rs.getString("name"));
+	                    info.setMobile(rs.getInt("mobile"));
+	                    info.setEmail(rs.getString("email"));
+	                    results.add(info);
+	                }
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	        return results;
+	    }
 }
