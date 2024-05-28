@@ -4,7 +4,7 @@ public class Register {
 	int id;
 	String name;
 	String email;
-	int mobile;
+	long mobile;
 	
 	
 	public int getId() {
@@ -25,13 +25,13 @@ public class Register {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getMobile() {
+	public long getMobile() {
 		return mobile;
 	}
-	public void setMobile(int mobile) {
+	public void setMobile(long mobile) {
 		this.mobile = mobile;
 	}
-	public Register(String name, String email, int mobile) {
+	public Register(String name, String email, long mobile) {
 		super();
 		this.name = name;
 		this.email = email;

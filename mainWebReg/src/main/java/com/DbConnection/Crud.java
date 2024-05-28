@@ -18,7 +18,7 @@ public class Crud {
 		PreparedStatement ps=connection.prepareStatement(insertQuery);
 		ps.setString(1,regi.getName());
 		ps.setString(2,regi.getEmail());
-		ps.setInt(3,regi.getMobile());
+		ps.setLong(3,regi.getMobile());
 		int rows = ps.executeUpdate();
 		System.out.println(rows+" user registered sucessfully");
 	}
@@ -53,27 +53,24 @@ public class Crud {
 		PreparedStatement ps=db.getConnection().prepareStatement(updateQuery);
 		ps.setString(1,register.getName());
 		ps.setString(2,register.getEmail());
-		ps.setInt(3,register.getMobile());
+		ps.setLong(3,register.getMobile());
 		ps.setInt(4,register.getId());
 		ps.executeUpdate();
 	}
 	
 	 public ArrayList<Register> search(String name) throws ClassNotFoundException {
 	        ArrayList<Register> results = new ArrayList<>();
-	        String sql = "SELECT id, name, mobile, email FROM Info WHERE name LIKE ? OR mobile LIKE ? OR email LIKE ?";
+	        String sql = "SELECT userid, name, mobile, email FROM user_register WHERE name LIKE ?";
 
 	        try (Connection conn = db.getConnection();
 	             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-	            String searchQuery = "%" + name + "%";
-	            stmt.setString(1, searchQuery);
-	            stmt.setString(2, searchQuery);
-	            stmt.setString(3, searchQuery);
-
+	          //  String searchQuery = "%" + name + "%";
+	            stmt.setString(1,name);
 	            try (ResultSet rs = stmt.executeQuery()) {
 	                while (rs.next()) {
 	                    Register info = new Register();
-	                    info.setId(rs.getInt("id"));
+	                    info.setId(rs.getInt("userid"));
 	                    info.setName(rs.getString("name"));
 	                    info.setMobile(rs.getInt("mobile"));
 	                    info.setEmail(rs.getString("email"));
@@ -83,7 +80,7 @@ public class Crud {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-
+	        System.out.println("Search results: " + results);
 	        return results;
 	    }
 }

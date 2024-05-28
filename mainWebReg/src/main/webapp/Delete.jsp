@@ -120,9 +120,18 @@ body {
 </head>
 <body>
     <div class="container">
+    <form action="Sorting" method="post">
+             <select name="column" id="column"
+                style="width: 7%; padding: 10px; margin: 10px 0; border-radius: 4px; border: 1px solid #ccc; font-size: 16px;">
+                <option value="name">Name</option>
+                <option value="attendance">Email</option>
+            </select>
+            <button type="submit"
+                style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Sort</button>
+        </form>
      <div class="search-box">
-            <form action="SearchServlet" method="get">
-                <input type="text" name="query" placeholder="Search...">
+            <form action="SearchServlet" method="post">
+                <input type="text" name="name" placeholder="Search...">
                 <input type="submit" value="Search">
             </form>
         </div>

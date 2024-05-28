@@ -24,33 +24,26 @@ public class Registration extends HttpServlet {
      */
     public Registration() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    Register regi=new Register();
+   
     Crud crud=new Crud();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		/*
-		 * response.getWriter().append("Served at: ").append(request.getContextPath());
-		 * response.getWriter().append("Served at: ").append(request.getContextPath());
-		 */
+		Register regi=new Register();
 		String name=request.getParameter("name");
 		regi.setName(name);
 		String email = request.getParameter("email");
 		regi.setEmail(email);
-		int mobile = Integer.parseInt(request.getParameter("mobile"));
+		Long mobile = Long.parseLong(request.getParameter("mobile"));
 		regi.setMobile(mobile);
 		try {
 			crud.insertRegister(regi);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("list", regi);
@@ -70,7 +63,6 @@ public class Registration extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
 		if(action != null && action.equals("Delete")) {
 					int id = Integer.parseInt(request.getParameter("deleteid"));

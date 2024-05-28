@@ -36,14 +36,7 @@ public class SearchServlet extends HttpServlet {
     private Crud crud = new Crud(); // Assuming you have a Crud class for database operations
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
-//		  String query = request.getParameter("query"); List<Register> result = null;
-//		  try { result = crud.search(query); } catch (ClassNotFoundException |
-//		  SQLException e) { e.printStackTrace(); // Optionally, set an error message in
-//		  request.setAttribute("error", "An error occurred while processing your search request."); }
-//		  request.setAttribute("results", result); RequestDispatcher dispatcher =
-//		  request.getRequestDispatcher("Delete.jsp"); dispatcher.forward(request,
-//		  response);
+	
 		 
     }
 
@@ -53,15 +46,15 @@ public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         Crud crud = new Crud();
-            ArrayList<Register> formDataList = null;
+            ArrayList<Register> list = null;
 			try {
-				formDataList = crud.search(name);
+				list = crud.search(name);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            request.setAttribute("allFormDataList", formDataList);
-        request.getRequestDispatcher("table.jsp").forward(request, response);
+            request.setAttribute("list", list);
+        request.getRequestDispatcher("Delete.jsp").forward(request, response);
     }
 
 }
